@@ -20,24 +20,22 @@ public class Client {
     }
 
     /*----------------------Getters-------------------------*/
-    public String getCNP() {
-        return CNP;
-    }
+    public String getCNP() {return CNP;}
+
     public String getFirstName() {
         return firstName;
     }
+
     public String getLastName() {
         return lastName;
     }
 
     /*-----------------------Setters---------------------------*/
-    public void setCNP(String new_CNP) {
-        this.CNP = new_CNP;
-    }
+    public void setCNP(String new_CNP) {this.CNP = new_CNP;}
+
     public void setFirstName(String new_firstName) {
         this.firstName = new_firstName;
     }
-    public void setLastName (String new_lastName) {
-        this.lastName = new_lastName;
-    }
+
+    public void setLastName (String new_lastName) {this.lastName = new_lastName;}
 }
