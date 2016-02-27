@@ -8,14 +8,16 @@ public class Book {
     private String ISBN;
     private String title;
     private String author;
+    private float price;
     private static int numberOfBooks = 0;
 
     //Constructor (id is automatically assigned to each book)
-    public Book(String _ISBN, String _title, String _author) {
+    public Book(String _ISBN, String _title, String _author, float _price) {
         this.id = ++numberOfBooks;
         this.ISBN = _ISBN;
         this.title = _title;
         this.author = _author;
+        this.price = _price;
     }
 
     /*-------------------Getters--------------------------*/
@@ -34,6 +36,10 @@ public class Book {
     public String getAuthor() {
         return author;
     }
+
+    public float getPrice() {
+        return price;
+    }
     /*---------------------Setters----------------------------*/
     public void setId(int new_id) {
         this.id = new_id;
@@ -49,5 +55,9 @@ public class Book {
 
     public void setAuthor (String new_author) {
         this.author = new_author;
+    }
+
+    public void setPrice(float new_price) {
+        this.price = new_price;
     }
 }
