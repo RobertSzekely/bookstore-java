@@ -1,6 +1,4 @@
-package View;
-
-import Controller.Controller;
+package main.java.ro.ubb.bookstore.ui;
 
 import java.util.Scanner;
 

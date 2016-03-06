@@ -1,4 +1,4 @@
-package Controller;
+package main.java.ro.ubb.bookstore.controller;
 
 /**
  * Created by robertszekely on 27/02/16.

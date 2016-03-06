@@ -1,4 +1,4 @@
-package Domain;
+package main.java.ro.ubb.bookstore.domain;
 
 /**
  * Created by robertszekely on 27/02/16.

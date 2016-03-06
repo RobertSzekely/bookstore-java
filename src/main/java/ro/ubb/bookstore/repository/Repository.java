@@ -1,7 +1,8 @@
-package Repository;
+package main.java.ro.ubb.bookstore.repository;
 
-import Domain.Book;
-import Domain.Client;
+import main.java.ro.ubb.bookstore.domain.Book;
+import main.java.ro.ubb.bookstore.domain.Client;
+import main.java.ro.ubb.bookstore.repository.IRepository;
 
 import java.util.List;
 
