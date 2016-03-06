@@ -28,5 +28,5 @@ public interface IRepository<ID, T extends BaseEntity<ID>> {
     Optional<T> delete(ID id);
 
     Optional<T> update(T entity) throws ValidatorException;
-    
+
 }
