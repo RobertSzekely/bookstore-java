@@ -35,6 +35,7 @@ public class Client {
     public String getEmail() {
         return email;
     }
+
     public String getTelephone() {
         return telephone;
     }
@@ -50,8 +51,34 @@ public class Client {
     public void setEmail(String new_email) {
         this.email = new_email;
     }
+
     public void setTelephone(String new_telephone){
         this.telephone = new_telephone;
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Client client = (Client) o;
+
+        if(CNP != client.CNP) return false;
+        if(firstName != client.firstName) return false;
+        if(lastName != client.lastName) return false;
+        if(email != client.email) return false;
+        if(telephone != client.telephone) return false;
+        return firstName.equals(client.firstName);
+    }
+    //@Override
+    public String toStirng() {
+        return "Client{" +
+                "CNP='" + CNP + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", telephone='" +telephone +
+                "} " + super.toString();
+    }
+
 
 }
