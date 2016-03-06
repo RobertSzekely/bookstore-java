@@ -12,7 +12,7 @@ import java.util.Optional;
 /**
  * Created by robertszekely on 27/02/16.
  */
-public interface IRepository<ID, T extends BaseEntity<ID>> {
+public interface Repository<ID, T extends BaseEntity<ID>> {
 
     /**
      * Find the entity with the given {@code id}

@@ -1,12 +1,8 @@
 package main.java.ro.ubb.bookstore.repository;
 
-import com.sun.corba.se.spi.activation.Repository;
 import main.java.ro.ubb.bookstore.domain.BaseEntity;
-import main.java.ro.ubb.bookstore.domain.Book;
-import main.java.ro.ubb.bookstore.domain.Client;
 import main.java.ro.ubb.bookstore.domain.Validators.Validator;
 import main.java.ro.ubb.bookstore.domain.Validators.ValidatorException;
-import main.java.ro.ubb.bookstore.repository.IRepository;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -14,7 +10,7 @@ import java.util.stream.Collectors;
 /**
  * Created by robertszekely on 27/02/16.
  */
-public class InMemoryRepository<ID, T extends BaseEntity<ID>> implements IRepository<ID, T> {
+public class InMemoryRepository<ID, T extends BaseEntity<ID>> implements Repository<ID, T> {
 
 
     private Map<ID, T> entities;

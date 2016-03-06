@@ -1,6 +1,6 @@
 package main.java.ro.ubb.bookstore;
 
-import main.java.ro.ubb.bookstore.controller.Controller;
+import main.java.ro.ubb.bookstore.controller.BookController;
 import main.java.ro.ubb.bookstore.ui.View;
 
 import java.util.Scanner;
@@ -18,7 +18,7 @@ public class Main {
     public static void main(String [] args) {
 
         Scanner input  = new Scanner(System.in);
-        Controller ctrl = new Controller();
+        
         int opt;
         View bookstoreView = new View();
 
