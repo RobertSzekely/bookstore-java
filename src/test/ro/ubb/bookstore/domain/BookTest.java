@@ -29,7 +29,7 @@ public class BookTest {
 
     @Before
     public void setUp () throws Exception {
-        book = new Book(ISBN, TITLE, AUTHOR, PRICE, UNITS);
+        book = new Book(ISBN, TITLE, AUTHOR, PRICE);
         book.setId(ID);
     }
     @After
@@ -91,17 +91,6 @@ public class BookTest {
 //        book.setPrice(NEW_PRICE;
 //        assertEquals("Price should be equal", NEW_PRICE, book.getPrice());
 //    }
-
-    @Test
-    public void testGetUnits() throws Exception {
-        assertEquals("Units should be equal", UNITS, book.getUnits());
-    }
-
-    @Test
-    public void testSetUnits() throws Exception {
-        book.setUnits(NEW_UNITS);
-        assertEquals("Units should be equal", NEW_UNITS, book.getUnits());
-    }
 
 
 }

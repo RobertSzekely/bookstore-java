@@ -1,6 +1,7 @@
 package main.java.ro.ubb.bookstore.ui;
 
 import main.java.ro.ubb.bookstore.controller.BookController;
+import main.java.ro.ubb.bookstore.domain.Book;
 
 import java.util.Scanner;
 
@@ -19,10 +20,11 @@ public class Console {
     }
 
 
-    Scanner input  = new Scanner(System.in).useDelimiter("\\n");;
+    Scanner input  = new Scanner(System.in).useDelimiter("\n");;
 
     public void printMainMenu() {
-        System.out.println("\nOptions for books:\n"
+        System.out.println("\n (0) Exit\n\n"
+                + "Options for books:\n"
                 + "(1) Print all books\n"
                 + "(2) Add a book\n"
                 + "(3) Delete a book\n"
@@ -43,14 +45,19 @@ public class Console {
 
     }
 
-    public void printAddNewBook() {
+    public Book printAddNewBook() {
         System.out.print("\nEnter ISBN: ");
         String isbn = input.next();
         System.out.print("\nEnter book title: ");
         String title = input.next();
         System.out.print("\nEnter book author: ");
         String author = input.next();
-        // TODO: 27/02/16
+        System.out.print("\nEnter book price: ");
+        String priceStr = input.next();
+        float price = Float.parseFloat(priceStr);
+
+        Book book = new Book(isbn, title, author, price);
+        return book;
     }
 
     public void printUpdateBook() {

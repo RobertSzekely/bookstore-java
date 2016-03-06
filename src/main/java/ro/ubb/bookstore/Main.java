@@ -4,10 +4,12 @@ import main.java.ro.ubb.bookstore.controller.BookController;
 import main.java.ro.ubb.bookstore.domain.Book;
 import main.java.ro.ubb.bookstore.domain.Validators.BookValidator;
 import main.java.ro.ubb.bookstore.domain.Validators.Validator;
+import main.java.ro.ubb.bookstore.domain.Validators.ValidatorException;
 import main.java.ro.ubb.bookstore.repository.InMemoryRepository;
 import main.java.ro.ubb.bookstore.ui.Console;
 import main.java.ro.ubb.bookstore.repository.IRepository;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Main {
 
@@ -35,12 +37,18 @@ public class Main {
             } while (cont == true);
 
             switch(opt) {
+                case 0:
+                    break;
                 case 1:
-                    //// TODO: 27/02/16
+                    System.out.println(bookController.getAllBooks().toString());
                     break;
                 case 2:
-                    //// TODO: 27/02/16
-                    console.printAddNewBook();
+                    Book book = console.printAddNewBook();
+                    try {
+                        bookController.addBook(book);
+                    } catch (ValidatorException e) {
+                        System.out.println("Invalid book input.");
+                    }
                     break;
                 case 3:
                     console.printDeleteBook();
