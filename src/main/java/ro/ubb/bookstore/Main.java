@@ -1,27 +1,31 @@
-import Controller.Controller;
-import View.View;
+package main.java.ro.ubb.bookstore;
 
+import main.java.ro.ubb.bookstore.controller.BookController;
+import main.java.ro.ubb.bookstore.domain.Book;
+import main.java.ro.ubb.bookstore.domain.Validators.BookValidator;
+import main.java.ro.ubb.bookstore.domain.Validators.Validator;
+import main.java.ro.ubb.bookstore.repository.InMemoryRepository;
+import main.java.ro.ubb.bookstore.ui.Console;
+import main.java.ro.ubb.bookstore.repository.IRepository;
 import java.util.Scanner;
 
 public class Main {
 
 
-
-//   public static void main(String[] args) {
-//        System.out.println("Hello World!");
-//        System.out.println("Hello from the other side!");
-//        System.out.println("I think I'm starting to understand how this works....");
-
-
     public static void main(String [] args) {
 
         Scanner input  = new Scanner(System.in);
-        Controller ctrl = new Controller();
+        Validator<Book> bookValidator = new BookValidator();
+        IRepository<Long, Book> bookRepository = new InMemoryRepository<>(bookValidator);
+        BookController bookController = new BookController(bookRepository);
+        Console console = new Console(bookController);
+        console.runConsole();
+
+
         int opt;
-        View bookstoreView = new View();
 
         do {
-            bookstoreView.printMainMenu();
+            console.printMainMenu();
             boolean cont = true;
             opt = 0;
             do {
@@ -36,14 +40,14 @@ public class Main {
                     break;
                 case 2:
                     //// TODO: 27/02/16
-                    bookstoreView.printAddNewBook();
+                    console.printAddNewBook();
                     break;
                 case 3:
-                    bookstoreView.printDeleteBook();
+                    console.printDeleteBook();
                     //// TODO: 27/02/16
                     break;
                 case 4:
-                    bookstoreView.printUpdateBook();
+                    console.printUpdateBook();
                     // TODO: 27/02/16
                     break;
                 case 5:
@@ -61,15 +65,15 @@ public class Main {
                     // TODO: 27/02/16
                     break;
                 case 10:
-                    bookstoreView.printAddNewClient();
+                    console.printAddNewClient();
                     // TODO: 27/02/16
                     break;
                 case 11:
-                    bookstoreView.printDeleteClient();
+                    console.printDeleteClient();
                     // TODO: 27/02/16
                     break;
                 case 12:
-                    bookstoreView.printUpdateClient();
+                    console.printUpdateClient();
                     // TODO: 27/02/16
                     break;
                 case 15:

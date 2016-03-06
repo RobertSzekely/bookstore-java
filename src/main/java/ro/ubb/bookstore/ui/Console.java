@@ -1,13 +1,22 @@
-package View;
+package main.java.ro.ubb.bookstore.ui;
 
-import Controller.Controller;
+import main.java.ro.ubb.bookstore.controller.BookController;
 
 import java.util.Scanner;
 
 /**
  * Created by robertszekely on 27/02/16.
  */
-public class View {
+public class Console {
+    private BookController bookController;
+
+    public Console(BookController bookController) {
+        this.bookController = bookController;
+    }
+
+    public void runConsole() {
+        printMainMenu();
+    }
 
 
     Scanner input  = new Scanner(System.in).useDelimiter("\\n");;
