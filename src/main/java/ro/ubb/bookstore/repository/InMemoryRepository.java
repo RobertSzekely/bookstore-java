@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 /**
  * Created by robertszekely on 27/02/16.
  */
-public class InMemoryRepository<ID, T extends BaseEntity<ID>> implements Repository<ID, T> {
+public class InMemoryRepository<ID, T extends BaseEntity<ID>> implements IRepository<ID, T> {
 
 
     private Map<ID, T> entities;
