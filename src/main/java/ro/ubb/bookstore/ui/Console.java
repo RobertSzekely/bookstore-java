@@ -105,61 +105,6 @@ public class Console {
     }
 
 
-
-    public void printAddNewBook() {
-        System.out.print("\nEnter ISBN: ");
-        String isbn = input.next();
-        System.out.print("\nEnter book title: ");
-        String title = input.next();
-        System.out.print("\nEnter book author: ");
-        String author = input.next();
-        // TODO: 27/02/16
-    }
-
-    public void printUpdateBook() {
-        System.out.print("\nEnter ISBN: ");
-        String isbn = input.next();
-        System.out.print("\nEnter new book title: ");
-        String title = input.next();
-        System.out.print("\nEnter new book author: ");
-        String author = input.next();
-        // TODO: 27/02/16
-    }
-    public void printDeleteBook() {
-        System.out.print("\nEnter ISBN: ");
-        String isbn = input.next();
-        // TODO: 27/02/16
-    }
-
-
-    public void printAddNewClient() {
-        System.out.print("\nEnter CNP: ");
-        String cnp = input.next();
-        System.out.print("\nEnter first name: ");
-        String firstname = input.next();
-        System.out.print("\nEnter last name: ");
-        String lastname = input.next();
-        // TODO: 27/02/16
-    }
-
-
-    public void printDeleteClient() {
-        System.out.print("\nEnter CNP: ");
-        String cnp = input.next();
-        // TODO: 27/02/16
-    }
-
-    public void printUpdateClient() {
-        System.out.print("\nEnter CNP: ");
-        String cnp = input.next();
-        System.out.print("\nEnter new first name: ");
-        String firstname = input.next();
-        System.out.print("\nEnter new last name: ");
-        String lastname = input.next();
-        // TODO: 27/02/16
-    }
-
-
     private void mainMenu() {
         int opt;
 
@@ -181,11 +126,9 @@ public class Console {
                     addBook();
                     break;
                 case 3:
-                    printDeleteBook();
                     //// TODO: 27/02/16
                     break;
                 case 4:
-                    printUpdateBook();
                     // TODO: 27/02/16
                     break;
                 case 5:
@@ -203,15 +146,12 @@ public class Console {
                     // TODO: 27/02/16
                     break;
                 case 10:
-                    printAddNewClient();
                     // TODO: 27/02/16
                     break;
                 case 11:
-                    printDeleteClient();
                     // TODO: 27/02/16
                     break;
                 case 12:
-                    printUpdateClient();
                     // TODO: 27/02/16
                     break;
                 case 15:
