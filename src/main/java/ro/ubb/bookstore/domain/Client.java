@@ -1,9 +1,11 @@
 package main.java.ro.ubb.bookstore.domain;
 
+import com.sun.xml.internal.bind.v2.model.core.ID;
+
 /**
  * Created by robertszekely on 27/02/16.
  */
-public class Client {
+public class Client extends BaseEntity<Long> {
 
     private String CNP;
     private String firstName;
