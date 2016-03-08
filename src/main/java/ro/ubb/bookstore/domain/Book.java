@@ -8,19 +8,15 @@ public class Book extends BaseEntity<Long> {
     private String title;
     private String author;
     private float price;
-    private int units;
 
-    public Book() {
-
-    }
+    public Book() { }
 
     //Constructor (id is automatically assigned to each book)
-    public Book(String _ISBN, String _title, String _author, float _price, int _units) {
+    public Book(String _ISBN, String _title, String _author, float _price) {
         this.ISBN = _ISBN;
         this.title = _title;
         this.author = _author;
         this.price = _price;
-        this.units = _units;
     }
 
     /*-------------------Getters--------------------------*/
@@ -41,9 +37,7 @@ public class Book extends BaseEntity<Long> {
         return price;
     }
 
-    public int getUnits() {
-        return units;
-    }
+
     /*---------------------Setters----------------------------*/
 
     public void setISBN(String new_ISBN) {
@@ -62,9 +56,6 @@ public class Book extends BaseEntity<Long> {
         this.price = new_price;
     }
 
-    public  void setUnits(int new_units) {
-        this.units = new_units;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -77,7 +68,6 @@ public class Book extends BaseEntity<Long> {
         if(title != book.title) return false;
         if(author != book.author) return false;
         if(price != book.price) return false;
-        if(units != book.units) return false;
         return title.equals(book.title);
 
     }
@@ -88,8 +78,7 @@ public class Book extends BaseEntity<Long> {
                 "ISBN='" + ISBN + '\'' +
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
-                ", price='" + price + '\'' +
-                ", units='" + units +
+                ", price='" + price +
                 "} " + super.toString();
     }
 }

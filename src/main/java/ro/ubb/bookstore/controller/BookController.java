@@ -21,7 +21,9 @@ public class BookController {
     public void addBook(Book book) throws ValidatorException {
         IRepository.save(book);
     }
-
+    /*
+    public void deleteBook()
+    */
     public Set<Book> getAllBooks() {
         Iterable<Book> books = IRepository.findAll();
         return StreamSupport.stream(books.spliterator(), false).collect(Collectors.toSet());

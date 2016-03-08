@@ -41,6 +41,8 @@ public class Client extends BaseEntity<Long> {
     public String getTelephone() {
         return telephone;
     }
+
+
     /*-----------------------Setters---------------------------*/
     public void setCNP(String new_CNP) {this.CNP = new_CNP;}
 
@@ -57,6 +59,8 @@ public class Client extends BaseEntity<Long> {
     public void setTelephone(String new_telephone){
         this.telephone = new_telephone;
     }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -71,6 +75,8 @@ public class Client extends BaseEntity<Long> {
         if(telephone != client.telephone) return false;
         return firstName.equals(client.firstName);
     }
+
+
     //@Override
     public String toStirng() {
         return "Client{" +

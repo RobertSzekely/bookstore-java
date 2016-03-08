@@ -4,10 +4,12 @@ import main.java.ro.ubb.bookstore.controller.BookController;
 import main.java.ro.ubb.bookstore.domain.Book;
 import main.java.ro.ubb.bookstore.domain.Validators.BookValidator;
 import main.java.ro.ubb.bookstore.domain.Validators.Validator;
+import main.java.ro.ubb.bookstore.domain.Validators.ValidatorException;
 import main.java.ro.ubb.bookstore.repository.InMemoryRepository;
 import main.java.ro.ubb.bookstore.ui.Console;
 import main.java.ro.ubb.bookstore.repository.IRepository;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Main {
 
@@ -21,8 +23,6 @@ public class Main {
         Console console = new Console(bookController);
         console.runConsole();
 
-
     }
 
 }
-

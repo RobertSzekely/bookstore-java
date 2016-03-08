@@ -29,10 +29,12 @@ public class Console {
     }
 
 
-    Scanner input  = new Scanner(System.in).useDelimiter("\\n");;
+    Scanner input  = new Scanner(System.in).useDelimiter("\n");;
 
-    public void printMainMenuOptions() {
-        System.out.println("\nOptions for books:\n"
+
+    public void printMainMenu() {
+        System.out.println("\n (0) Exit\n\n"
+                + "Options for books:\n"
                 + "(1) Print all books\n"
                 + "(2) Add a book\n"
                 + "(3) Delete a book\n"
@@ -56,7 +58,6 @@ public class Console {
     public void printAllBooks() {
         Set<Book> books = bookController.getAllBooks();
         books.stream().forEach(System.out::println);
-    }
 
     private void addBooks() {
         while(true) {
