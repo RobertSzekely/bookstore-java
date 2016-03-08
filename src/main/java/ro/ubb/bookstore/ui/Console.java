@@ -58,6 +58,7 @@ public class Console {
     public void printAllBooks() {
         Set<Book> books = bookController.getAllBooks();
         books.stream().forEach(System.out::println);
+    }
 
     private void addBooks() {
         while(true) {
@@ -72,6 +73,7 @@ public class Console {
             }
         }
     }
+
     private void addBook() {
         Book book = readBook();
         try {
@@ -93,7 +95,7 @@ public class Console {
             Float price = Float.valueOf(bufferedReader.readLine());
             int units = Integer.parseInt(bufferedReader.readLine());
 
-            Book book = new Book(ISBN, title, author, price, units);
+            Book book = new Book(ISBN, title, author, price);
             book.setId(id);
 
             return book;
@@ -103,14 +105,14 @@ public class Console {
         }
         return null;
 
-    }
+    };
 
 
     private void mainMenu() {
         int opt;
 
         do {
-            printMainMenuOptions();
+            printMainMenu();
             boolean cont = true;
             opt = 0;
             do {
