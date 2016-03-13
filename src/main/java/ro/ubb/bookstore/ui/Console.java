@@ -139,7 +139,7 @@ public class Console {
 
     }
 
-    private Long readBookId() {
+    private Long readId() {
         System.out.println("Enter book id: ");
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         try {
@@ -193,7 +193,7 @@ public class Console {
 
     private void deleteBook() {
         try {
-            long id = readBookId();
+            long id = readId();
             bookController.deleteBook(id);
         } catch (NullPointerException ex) {
             ex.printStackTrace();
@@ -258,6 +258,25 @@ public class Console {
 
     }
 
+    private void deleteClient() {
+        try {
+            long id = readId();
+            clientController.deleteClient(id);
+        } catch (NullPointerException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+    private void updateClient() {
+        Client client = readClient();
+        try {
+            clientController.updateClient(client);
+        } catch (ValidatorException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void mainMenu() {
         int opt;
@@ -303,10 +322,10 @@ public class Console {
                     addClient();
                     break;
                 case 11:
-                    // TODO: 27/02/16
+                    deleteClient();
                     break;
                 case 12:
-                    // TODO: 27/02/16
+                    updateClient();
                     break;
                 case 15:
                     // TODO: 27/02/16

@@ -22,6 +22,14 @@ public class ClientController {
         IRepository.save(client);
     }
 
+    public void  deleteClient(long id) throws IllegalArgumentException {
+        IRepository.delete(id);
+    }
+
+    public void updateClient(Client client) throws ValidatorException {
+        IRepository.update(client);
+    }
+
     public Set<Client> getAllClients() {
         Iterable<Client> clients = IRepository.findAll();
         return StreamSupport.stream(clients.spliterator(), false).collect(Collectors.toSet());
