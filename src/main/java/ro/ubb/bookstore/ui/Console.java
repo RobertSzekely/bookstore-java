@@ -79,6 +79,15 @@ public class Console {
         Client client4 = new Client("2Anca", "Sfiriac", "whatever@gmail.com", "youwish");
         long id4 = 4;
         client4.setId(id4);
+
+        try {
+            clientController.addClient(client1);
+            clientController.addClient(client2);
+            clientController.addClient(client3);
+            clientController.addClient(client4);
+        } catch (ValidatorException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void printMainMenu() {
@@ -103,6 +112,55 @@ public class Console {
         );
 
     }
+
+
+    // -----------------Books Stuff ---------------------------------
+
+    private Book readBook() {
+        System.out.println("Read book {id, title, author, category, price");
+
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            Long id = Long.valueOf(bufferedReader.readLine());
+            String title = bufferedReader.readLine();
+            String author = bufferedReader.readLine();
+            String category = bufferedReader.readLine();
+            Float price = Float.valueOf(bufferedReader.readLine());
+
+            Book book = new Book(title, author, category, price);
+            book.setId(id);
+
+            return book;
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+
+    }
+
+    private Long readBookId() {
+        System.out.println("Enter book id: ");
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            return Long.valueOf(bufferedReader.readLine());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    private String readAuthor() {
+        System.out.println("Enter author: ");
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            return bufferedReader.readLine();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
 
     public void printAllBooks() {
         Set<Book> books = bookController.getAllBooks();
@@ -132,43 +190,10 @@ public class Console {
         }
 
     }
-    private Book readBook() {
-        System.out.println("Read book {id, title, author, category, price");
-
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        try {
-            Long id = Long.valueOf(bufferedReader.readLine());
-            String title = bufferedReader.readLine();
-            String author = bufferedReader.readLine();
-            String category = bufferedReader.readLine();
-            Float price = Float.valueOf(bufferedReader.readLine());
-
-            Book book = new Book(title, author, category, price);
-            book.setId(id);
-
-            return book;
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        return null;
-
-    }
-
-    private Long readId() {
-        System.out.println("Enter book id: ");
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        try {
-            return Long.valueOf(bufferedReader.readLine());
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        return null;
-    }
 
     private void deleteBook() {
         try {
-            long id = readId();
+            long id = readBookId();
             bookController.deleteBook(id);
         } catch (NullPointerException ex) {
             ex.printStackTrace();
@@ -185,24 +210,18 @@ public class Console {
         }
     }
 
-    private String readAuthor() {
-        System.out.println("Enter author: ");
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        try {
-            return bufferedReader.readLine();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        return null;
-    }
-
     private void filterBooksByAuthor() {
         String author = readAuthor();
         Set<Book> books = bookController.filterBooksByAuthor(author);
         books.stream().forEach(System.out::println);
     }
 
+    // -------------------Clients Stuff ---------------------------
 
+    public void printAllClients() {
+        Set<Client> clients = clientController.getAllClients();
+        clients.stream().forEach(System.out::println);
+    }
 
     private void mainMenu() {
         int opt;
@@ -239,7 +258,7 @@ public class Console {
                     // TODO: 27/02/16
                     break;
                 case 8:
-                    // TODO: 27/02/16
+                    printAllClients();
                     break;
                 case 9:
                     // TODO: 27/02/16
