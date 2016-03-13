@@ -24,6 +24,10 @@ public class BookController {
     /*
     public void deleteBook()
     */
+    public  void  deleteBook(long id) throws IllegalArgumentException {
+        IRepository.delete(id);
+    }
+
     public Set<Book> getAllBooks() {
         Iterable<Book> books = IRepository.findAll();
         return StreamSupport.stream(books.spliterator(), false).collect(Collectors.toSet());

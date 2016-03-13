@@ -29,7 +29,7 @@ public class Console {
     }
 
 
-    Scanner input  = new Scanner(System.in).useDelimiter("\n");;
+    Scanner input  = new Scanner(System.in).useDelimiter("\n");
 
 
     public void printMainMenu() {
@@ -104,7 +104,29 @@ public class Console {
         }
         return null;
 
-    };
+    }
+
+    private Long readId() {
+        System.out.println("Enter book id: ");
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            return Long.valueOf(bufferedReader.readLine());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    private void deleteBook() {
+        try {
+            long id = readId();
+            bookController.deleteBook(id);
+        } catch (NullPointerException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
 
 
     private void mainMenu() {
@@ -128,7 +150,7 @@ public class Console {
                     addBook();
                     break;
                 case 3:
-                    //// TODO: 27/02/16
+                    deleteBook();
                     break;
                 case 4:
                     // TODO: 27/02/16
