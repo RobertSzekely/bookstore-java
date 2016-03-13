@@ -11,6 +11,7 @@ public class Book extends BaseEntity<Long> {
 
     public Book() { }
 
+    //toodo Modifications on branch develop
     //Constructor (id is automatically assigned to each book)
     public Book(String _ISBN, String _title, String _author, float _price) {
         this.ISBN = _ISBN;
