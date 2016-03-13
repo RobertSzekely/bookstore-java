@@ -1,7 +1,9 @@
 package main.java.ro.ubb.bookstore.ui;
 
 import main.java.ro.ubb.bookstore.controller.BookController;
+import main.java.ro.ubb.bookstore.controller.ClientController;
 import main.java.ro.ubb.bookstore.domain.Book;
+import main.java.ro.ubb.bookstore.domain.Client;
 import main.java.ro.ubb.bookstore.domain.Validators.ValidatorException;
 
 import java.io.BufferedReader;
@@ -16,9 +18,13 @@ import java.util.Set;
  */
 public class Console {
     private BookController bookController;
+    private ClientController clientController;
 
-    public Console(BookController bookController) {
-        this.bookController = bookController;
+    Scanner input  = new Scanner(System.in).useDelimiter("\n");
+
+    public Console(BookController _bookController, ClientController _clientController) {
+        this.bookController = _bookController;
+        this.clientController = _clientController;
     }
 
     public void runConsole() {
@@ -26,11 +32,9 @@ public class Console {
         //addBook();
         //printAllBooks();
         addSomeBooks();
+        addSomeClients();
         mainMenu();
     }
-
-
-    Scanner input  = new Scanner(System.in).useDelimiter("\n");
 
     private void addSomeBooks() {
         Book book1 = new Book("The Book Thief", "Zusak Markus", "Young Adult", 55);
@@ -57,6 +61,24 @@ public class Console {
         } catch (ValidatorException ex) {
             ex.printStackTrace();
         }
+    }
+
+    private void addSomeClients() {
+        Client client1 = new Client("Marius", "Farcas", "marius@gmail.com", "123");
+        long id1 = 1;
+        client1.setId(id1);
+
+        Client client2 = new Client("Robert", "Szekely", "robibobi@yahoo.ro", "074sterge");
+        long id2 = 2;
+        client2.setId(id2);
+
+        Client client3 = new Client("Sergiu", "Sima", "sebi@gmail.com", "cantbecontacted");
+        long id3 = 3;
+        client3.setId(id3);
+
+        Client client4 = new Client("2Anca", "Sfiriac", "whatever@gmail.com", "youwish");
+        long id4 = 4;
+        client4.setId(id4);
     }
 
     public void printMainMenu() {

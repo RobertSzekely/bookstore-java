@@ -18,7 +18,6 @@ public interface IRepository<ID, T extends BaseEntity<ID>> {
      * Find the entity with the given {@code id}
      * @return
      */
-
     Optional<T> findOne(ID id);
 
     Iterable<T> findAll();
