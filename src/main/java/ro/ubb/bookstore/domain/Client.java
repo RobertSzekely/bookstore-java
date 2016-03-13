@@ -72,8 +72,8 @@ public class Client extends BaseEntity<Long> {
     }
 
 
-    //@Override
-    public String toStirng() {
+    @Override
+    public String toString() {
         return "Client{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

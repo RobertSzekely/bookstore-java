@@ -61,6 +61,7 @@ public class Book extends BaseEntity<Long> {
         this.price = new_price;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
