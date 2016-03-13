@@ -93,7 +93,6 @@ public class Console {
             String title = bufferedReader.readLine();
             String author = bufferedReader.readLine();
             Float price = Float.valueOf(bufferedReader.readLine());
-            int units = Integer.parseInt(bufferedReader.readLine());
 
             Book book = new Book(ISBN, title, author, price);
             book.setId(id);
