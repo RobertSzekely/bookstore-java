@@ -33,7 +33,7 @@ public class Console {
 
 
     public void printMainMenu() {
-        System.out.println("\n (0) Exit\n\n"
+        System.out.println("\n(0) Exit\n"
                 + "Options for books:\n"
                 + "(1) Print all books\n"
                 + "(2) Add a book\n"
