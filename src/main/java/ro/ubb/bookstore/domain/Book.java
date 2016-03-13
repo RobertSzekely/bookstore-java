@@ -53,7 +53,7 @@ public class Book extends BaseEntity<Long> {
         this.author = new_author;
     }
 
-    private void setCategory (String new_category) {
+    public void setCategory (String new_category) {
         this.category = new_category;
     }
 

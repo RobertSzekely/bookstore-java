@@ -84,17 +84,17 @@ public class Console {
 
     }
     private Book readBook() {
-        System.out.println("Read book {id, ISBN, title, author, price, units");
+        System.out.println("Read book {id, title, author, category, price");
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         try {
             Long id = Long.valueOf(bufferedReader.readLine());
-            String ISBN = bufferedReader.readLine();
             String title = bufferedReader.readLine();
             String author = bufferedReader.readLine();
+            String category = bufferedReader.readLine();
             Float price = Float.valueOf(bufferedReader.readLine());
 
-            Book book = new Book(ISBN, title, author, price);
+            Book book = new Book(title, author, category, price);
             book.setId(id);
 
             return book;

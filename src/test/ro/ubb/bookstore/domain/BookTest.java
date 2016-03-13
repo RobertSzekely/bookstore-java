@@ -13,8 +13,8 @@ import static org.junit.Assert.*;
 public class BookTest {
     private static final Long ID = new Long(1);
     private static final Long NEW_ID = new Long(2);
-    private static final String ISBN = "isbn01";
-    private static final String NEW_ISBN = "isbn02";
+    private static final String CATEGORY = "category01";
+    private static final String NEW_CATEGORY = "category02";
     private static final String TITLE = "title01";
     private static final String NEW_TITLE = "title02";
     private static final String AUTHOR = "author01";
@@ -29,7 +29,7 @@ public class BookTest {
 
     @Before
     public void setUp () throws Exception {
-        book = new Book(ISBN, TITLE, AUTHOR, PRICE);
+        book = new Book(TITLE, AUTHOR, CATEGORY, PRICE);
         book.setId(ID);
     }
     @After
@@ -38,14 +38,14 @@ public class BookTest {
     }
 
     @Test
-    public void testGetISBN() throws Exception {
-        assertEquals("ISBN should be equal", ISBN, book.getISBN());
+    public void testGetCategory() throws Exception {
+        assertEquals("Category should be equal", CATEGORY, book.getCategory());
     }
 
     @Test
-    public void testSetISBN() throws Exception {
-        book.setISBN(NEW_ISBN);
-        assertEquals("ISBN should be equal", NEW_ISBN, book.getISBN());
+    public void testSetCategory() throws Exception {
+        book.setCategory(NEW_CATEGORY);
+        assertEquals("Category should be equal", NEW_CATEGORY, book.getCategory());
     }
 
     @Test
