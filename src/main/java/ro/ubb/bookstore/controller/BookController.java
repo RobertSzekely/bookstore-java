@@ -4,6 +4,7 @@ import main.java.ro.ubb.bookstore.domain.Book;
 import main.java.ro.ubb.bookstore.domain.Validators.ValidatorException;
 import main.java.ro.ubb.bookstore.repository.IRepository;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -34,6 +35,16 @@ public class BookController {
     public Set<Book> getAllBooks() {
         Iterable<Book> books = IRepository.findAll();
         return StreamSupport.stream(books.spliterator(), false).collect(Collectors.toSet());
+    }
+
+    public Set<Book> filterBooksByAuthor(String s) {
+        Iterable<Book> books = IRepository.findAll();
+
+        Set<Book> filteredBooks = new HashSet<>();
+        books.forEach(filteredBooks::add);
+        filteredBooks.removeIf(book -> !book.getAuthor().contains(s));
+
+        return filteredBooks;
     }
 
 }

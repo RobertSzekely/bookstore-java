@@ -25,12 +25,39 @@ public class Console {
         //printMainMenu();
         //addBook();
         //printAllBooks();
+        addSomeBooks();
         mainMenu();
     }
 
 
     Scanner input  = new Scanner(System.in).useDelimiter("\n");
 
+    private void addSomeBooks() {
+        Book book1 = new Book("The Book Thief", "Zusak Markus", "Young Adult", 55);
+        long id1 = 1;
+        book1.setId(id1);
+
+        Book book2 = new Book("The Darkest Minds", "Bracken Alexandra", "Dystopian", 34);
+        long id2 = 2;
+        book2.setId(id2);
+
+        Book book3 = new Book("Harry Potter and The Philosopher's Stone", "J.K. Rowling", "Childern", 45);
+        long id3 = 3;
+        book3.setId(id3);
+
+        Book book4 = new Book("The Perks of Being a Wallflower", "Stephen Chbosky", "Contemporary", 39);
+        long id4 = 4;
+        book4.setId(id4);
+
+        try {
+            bookController.addBook(book1);
+            bookController.addBook(book2);
+            bookController.addBook(book3);
+            bookController.addBook(book4);
+        } catch (ValidatorException ex) {
+            ex.printStackTrace();
+        }
+    }
 
     public void printMainMenu() {
         System.out.println("\n(0) Exit\n"
@@ -136,6 +163,23 @@ public class Console {
         }
     }
 
+    private String readAuthor() {
+        System.out.println("Enter author: ");
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            return bufferedReader.readLine();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    private void filterBooksByAuthor() {
+        String author = readAuthor();
+        Set<Book> books = bookController.filterBooksByAuthor(author);
+        books.stream().forEach(System.out::println);
+    }
+
 
 
     private void mainMenu() {
@@ -168,7 +212,7 @@ public class Console {
                     // TODO: 27/02/16
                     break;
                 case 6:
-                    // TODO: 27/02/16
+                    filterBooksByAuthor();
                 case 7:
                     // TODO: 27/02/16
                     break;
