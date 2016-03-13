@@ -8,6 +8,13 @@ import main.java.ro.ubb.bookstore.domain.Client;
 public class ClientValidator implements Validator<Client> {
     @Override
     public void validate(Client entity) throws ValidatorException {
-        //TODO validate client
+        if (entity.getFirstName() == null)
+            throw new ValidatorException("First name is empty.");
+        if (entity.getLastName() == null)
+            throw new ValidatorException("Last name is empty.");
+        if (entity.getEmail() == null)
+            throw new ValidatorException("Email is empty.");
+        if (entity.getTelephone() == null)
+            throw new ValidatorException("Telephone is empty.");
     }
 }

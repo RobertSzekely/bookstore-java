@@ -9,6 +9,13 @@ public class BookValidator implements Validator<Book> {
 
     @Override
     public void validate(Book entity) throws ValidatorException{
-        //TODO validate book
+        if (entity.getTitle() == null)
+            throw new ValidatorException("Title is empty.");
+        if (entity.getAuthor() == null)
+            throw new ValidatorException("Author is empty.");
+        if (entity.getCategory() == null)
+            throw new ValidatorException("Category is empty.");
+        if (entity.getPrice() < 0)
+            throw new ValidatorException("Price can not be negative.");
     }
 }
