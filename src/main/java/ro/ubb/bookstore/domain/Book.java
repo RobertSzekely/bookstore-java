@@ -7,11 +7,13 @@ public class Book extends BaseEntity<Long> {
     private String ISBN;
     private String title;
     private String author;
+    private String category;
     private float price;
 
     public Book() { }
 
     //toodo Modifications on branch develop
+
     //Constructor (id is automatically assigned to each book)
     public Book(String _ISBN, String _title, String _author, float _price) {
         this.ISBN = _ISBN;
@@ -32,6 +34,10 @@ public class Book extends BaseEntity<Long> {
 
     public String getAuthor() {
         return author;
+    }
+
+    public String getCategory() {
+        return category;
     }
 
     public float getPrice() {
