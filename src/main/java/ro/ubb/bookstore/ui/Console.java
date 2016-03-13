@@ -117,7 +117,7 @@ public class Console {
     // -----------------Books Stuff ---------------------------------
 
     private Book readBook() {
-        System.out.println("Read book {id, title, author, category, price");
+        System.out.println("Read book {id, title, author, category, price}");
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         try {
@@ -218,10 +218,46 @@ public class Console {
 
     // -------------------Clients Stuff ---------------------------
 
+    private Client readClient() {
+        System.out.println("Read client {id, first name, last name, email, telephone}");
+
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+        try {
+            Long id = Long.valueOf(bufferedReader.readLine());
+            String firstName = bufferedReader.readLine();
+            String lastName = bufferedReader.readLine();
+            String email = bufferedReader.readLine();
+            String telephone = bufferedReader.readLine();
+
+            Client client = new Client(firstName, lastName, email, telephone);
+            client.setId(id);
+
+            return client;
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+
+    }
+
     public void printAllClients() {
         Set<Client> clients = clientController.getAllClients();
         clients.stream().forEach(System.out::println);
     }
+
+    private void addClient() {
+        Client client = readClient();
+
+        try {
+            clientController.addClient(client);
+        } catch (ValidatorException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     private void mainMenu() {
         int opt;
@@ -264,7 +300,7 @@ public class Console {
                     // TODO: 27/02/16
                     break;
                 case 10:
-                    // TODO: 27/02/16
+                    addClient();
                     break;
                 case 11:
                     // TODO: 27/02/16
