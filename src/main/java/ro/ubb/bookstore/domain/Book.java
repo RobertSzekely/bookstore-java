@@ -22,6 +22,8 @@ public class Book extends BaseEntity<Long> {
         this.price = _price;
     }
 
+
+    //commit me.
     /*-------------------Getters--------------------------*/
 
     public String getISBN() {
