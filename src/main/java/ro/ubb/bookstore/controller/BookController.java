@@ -21,12 +21,15 @@ public class BookController {
     public void addBook(Book book) throws ValidatorException {
         IRepository.save(book);
     }
-    /*
-    public void deleteBook()
-    */
-    public  void  deleteBook(long id) throws IllegalArgumentException {
+
+    public void  deleteBook(long id) throws IllegalArgumentException {
         IRepository.delete(id);
     }
+
+    public void updateBook(Book book) throws ValidatorException {
+        IRepository.update(book);
+    }
+
 
     public Set<Book> getAllBooks() {
         Iterable<Book> books = IRepository.findAll();

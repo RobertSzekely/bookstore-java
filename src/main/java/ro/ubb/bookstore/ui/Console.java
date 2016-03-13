@@ -127,6 +127,15 @@ public class Console {
 
     }
 
+    private void updateBook() {
+        Book book = readBook();
+        try {
+            bookController.updateBook(book);
+        } catch (ValidatorException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     private void mainMenu() {
@@ -153,7 +162,7 @@ public class Console {
                     deleteBook();
                     break;
                 case 4:
-                    // TODO: 27/02/16
+                    updateBook();
                     break;
                 case 5:
                     // TODO: 27/02/16
