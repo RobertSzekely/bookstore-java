@@ -1,8 +1,10 @@
 package main.java.ro.ubb.bookstore.ui;
 
+import main.java.ro.ubb.bookstore.controller.BookClientController;
 import main.java.ro.ubb.bookstore.controller.BookController;
 import main.java.ro.ubb.bookstore.controller.ClientController;
 import main.java.ro.ubb.bookstore.domain.Book;
+import main.java.ro.ubb.bookstore.domain.BookClient;
 import main.java.ro.ubb.bookstore.domain.Client;
 import main.java.ro.ubb.bookstore.domain.Validators.ValidatorException;
 
@@ -19,12 +21,14 @@ import java.util.Set;
 public class Console {
     private BookController bookController;
     private ClientController clientController;
+    private BookClientController bookClientController;
 
     Scanner input  = new Scanner(System.in).useDelimiter("\n");
 
-    public Console(BookController _bookController, ClientController _clientController) {
+    public Console(BookController _bookController, ClientController _clientController, BookClientController _bookClientController) {
         this.bookController = _bookController;
         this.clientController = _clientController;
+        this.bookClientController = _bookClientController;
     }
 
     public void runConsole() {
@@ -33,6 +37,7 @@ public class Console {
         //printAllBooks();
         addSomeBooks();
         addSomeClients();
+        addBookClients();
         mainMenu();
     }
 
@@ -90,6 +95,38 @@ public class Console {
         }
     }
 
+    private void addBookClients() {
+        long unu = 1;
+        long doi = 2;
+        long trei = 3;
+        long patru = 4;
+
+        BookClient bc1 = new BookClient(unu, doi);
+        long id1 = 1;
+        bc1.setId(id1);
+
+        BookClient bc2 = new BookClient(doi, unu);
+        long id2 = 2;
+        bc2.setId(id2);
+
+        BookClient bc3 = new BookClient(trei, patru);
+        long id3 = 3;
+        bc3.setId(id3);
+
+        BookClient bc4 = new BookClient(patru, trei);
+        long id4 = 4;
+        bc4.setId(id4);
+
+        try {
+            bookClientController.addBookClient(bc1);
+            bookClientController.addBookClient(bc2);
+            bookClientController.addBookClient(bc3);
+            bookClientController.addBookClient(bc4);
+        } catch (ValidatorException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public void printMainMenu() {
         System.out.println("\n(0) Exit\n"
                 + "Options for books:\n"
@@ -109,6 +146,7 @@ public class Console {
                 + "(12) Update a client\n"
                 + "(13) Filter clients by last name\n"
                 + "(14) Filter clients by total money spent\n"
+                + "(15) Print list of books bought by clients\n"
         );
 
     }
@@ -329,6 +367,10 @@ public class Console {
         clients.stream().forEach(System.out::println);
     }
 
+    private void printAllBookClients() {
+        Set<BookClient> bookClients = bookClientController.getAllBookClients();
+        bookClients.stream().forEach(System.out::println);
+    }
 
     private void mainMenu() {
         int opt;
@@ -385,6 +427,8 @@ public class Console {
                 case 14:
                     // TODO: 27/02/16
                     break;
+                case 15:
+                    printAllBookClients();
                 default:
                     break;
             }
@@ -395,5 +439,6 @@ public class Console {
         input.close();
 
     }
+
 
 }

@@ -40,7 +40,7 @@ public class BookClient extends BaseEntity<Long> {
 
     @Override
     public String toString() {
-        return "Book id:{" + bookID + "}\n" +
-                "Client id:{" + clientID + "}\n" + super.toString();
+        return "Book id:{" + bookID + "} " +
+                "Client id:{" + clientID + "} " + super.toString();
     }
 }

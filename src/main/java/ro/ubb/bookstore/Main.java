@@ -1,13 +1,12 @@
 package main.java.ro.ubb.bookstore;
 
+import main.java.ro.ubb.bookstore.controller.BookClientController;
 import main.java.ro.ubb.bookstore.controller.BookController;
 import main.java.ro.ubb.bookstore.controller.ClientController;
 import main.java.ro.ubb.bookstore.domain.Book;
+import main.java.ro.ubb.bookstore.domain.BookClient;
 import main.java.ro.ubb.bookstore.domain.Client;
-import main.java.ro.ubb.bookstore.domain.Validators.BookValidator;
-import main.java.ro.ubb.bookstore.domain.Validators.ClientValidator;
-import main.java.ro.ubb.bookstore.domain.Validators.Validator;
-import main.java.ro.ubb.bookstore.domain.Validators.ValidatorException;
+import main.java.ro.ubb.bookstore.domain.Validators.*;
 import main.java.ro.ubb.bookstore.repository.InMemoryRepository;
 import main.java.ro.ubb.bookstore.ui.Console;
 import main.java.ro.ubb.bookstore.repository.IRepository;
@@ -29,7 +28,11 @@ public class Main {
         IRepository<Long, Client> clientRepository = new InMemoryRepository<>(clientValidator);
         ClientController clientController = new ClientController(clientRepository);
 
-        Console console = new Console(bookController, clientController);
+        Validator<BookClient> bookClientValidator = new BookClientValidator();
+        IRepository<Long, BookClient> bookClientRepository = new InMemoryRepository<>(bookClientValidator);
+        BookClientController bookClientController = new BookClientController(bookClientRepository);
+
+        Console console = new Console(bookController, clientController, bookClientController);
         console.runConsole();
 
 
