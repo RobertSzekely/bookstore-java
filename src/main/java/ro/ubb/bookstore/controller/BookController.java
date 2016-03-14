@@ -31,7 +31,6 @@ public class BookController {
         IRepository.update(book);
     }
 
-
     public Set<Book> getAllBooks() {
         Iterable<Book> books = IRepository.findAll();
         return StreamSupport.stream(books.spliterator(), false).collect(Collectors.toSet());
@@ -66,6 +65,16 @@ public class BookController {
         filteredBooks.removeIf(book -> book.getPrice() > upperBound);
 
         return filteredBooks;
+    }
+
+    public boolean checkExistance(Book book) {
+        Iterable<Book> books = IRepository.findAll();
+
+        for (Book b: books)
+            if (b.getId() == book.getId())
+                return true;
+
+        return  false;
     }
 
 }

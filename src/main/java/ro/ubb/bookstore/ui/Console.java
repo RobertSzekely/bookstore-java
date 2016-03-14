@@ -372,6 +372,42 @@ public class Console {
         bookClients.stream().forEach(System.out::println);
     }
 
+    private void buyBook() {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        Long id = null;
+
+        try {
+            id = Long.valueOf(bufferedReader.readLine());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Client client = readClient();
+        Book book = readBook();
+
+        if (!bookController.checkExistance(book)) {
+            System.out.println("Book is not available.");
+        }
+        else {
+
+            try {
+                clientController.addClient(client);
+            } catch (ValidatorException e) {
+                e.printStackTrace();
+            }
+
+            BookClient bc = new BookClient(book.getId(), client.getId());
+            bc.setId(id);
+
+            try {
+                bookClientController.addBookClient(bc);
+            } catch (ValidatorException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
     private void mainMenu() {
         int opt;
 
@@ -410,7 +446,7 @@ public class Console {
                     printAllClients();
                     break;
                 case 9:
-                    // TODO: 27/02/16
+                    buyBook();
                     break;
                 case 10:
                     addClient();
@@ -439,6 +475,7 @@ public class Console {
         input.close();
 
     }
+
 
 
 }
