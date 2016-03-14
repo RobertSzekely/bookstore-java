@@ -4,6 +4,7 @@ import main.java.ro.ubb.bookstore.domain.Client;
 import main.java.ro.ubb.bookstore.domain.Validators.ValidatorException;
 import main.java.ro.ubb.bookstore.repository.IRepository;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -28,6 +29,16 @@ public class ClientController {
 
     public void updateClient(Client client) throws ValidatorException {
         IRepository.update(client);
+    }
+
+    public Set<Client> filterClientsByLastName(String s) {
+        Iterable<Client> clients = IRepository.findAll();
+
+        Set<Client> filteredClients = new HashSet<>();
+        clients.forEach(filteredClients::add);
+        filteredClients.removeIf(client -> !client.getLastName().contains(s));
+
+        return filteredClients;
     }
 
     public Set<Client> getAllClients() {

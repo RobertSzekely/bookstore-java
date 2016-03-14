@@ -277,6 +277,17 @@ public class Console {
 
     }
 
+    private String readLastName() {
+        System.out.println("Enter last name: ");
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            return bufferedReader.readLine();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
     public void printAllClients() {
         Set<Client> clients = clientController.getAllClients();
         clients.stream().forEach(System.out::println);
@@ -310,6 +321,12 @@ public class Console {
         } catch (ValidatorException e) {
             e.printStackTrace();
         }
+    }
+
+    private void filterClientsByLastName() {
+        String lastName = readLastName();
+        Set<Client> clients = clientController.filterClientsByLastName(lastName);
+        clients.stream().forEach(System.out::println);
     }
 
 
@@ -362,8 +379,8 @@ public class Console {
                 case 12:
                     updateClient();
                     break;
-                case 15:
-                    // TODO: 27/02/16
+                case 13:
+                    filterClientsByLastName();
                     break;
                 case 14:
                     // TODO: 27/02/16
