@@ -47,4 +47,25 @@ public class BookController {
         return filteredBooks;
     }
 
+    public Set<Book> filterBooksByTitle(String s) {
+        Iterable<Book> books = IRepository.findAll();
+
+        Set<Book> filteredBooks = new HashSet<>();
+        books.forEach(filteredBooks::add);
+        filteredBooks.removeIf(book -> !book.getTitle().contains(s));
+
+        return filteredBooks;
+    }
+
+    public Set<Book> filterBooksByPrice(Float lowerBound, Float upperBound) {
+        Iterable<Book> books = IRepository.findAll();
+
+        Set<Book> filteredBooks = new HashSet<>();
+        books.forEach(filteredBooks::add);
+        filteredBooks.removeIf(book -> book.getPrice() < lowerBound);
+        filteredBooks.removeIf(book -> book.getPrice() > upperBound);
+
+        return filteredBooks;
+    }
+
 }

@@ -161,6 +161,28 @@ public class Console {
         return null;
     }
 
+    private String readTitle() {
+        System.out.println("Enter title: ");
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            return bufferedReader.readLine();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    private Float readPrice() {
+        System.out.println("Enter price: ");
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            return Float.valueOf(bufferedReader.readLine());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
 
     public void printAllBooks() {
         Set<Book> books = bookController.getAllBooks();
@@ -213,6 +235,19 @@ public class Console {
     private void filterBooksByAuthor() {
         String author = readAuthor();
         Set<Book> books = bookController.filterBooksByAuthor(author);
+        books.stream().forEach(System.out::println);
+    }
+
+    private void filterBooksByTitle() {
+        String title = readTitle();
+        Set<Book> books = bookController.filterBooksByTitle(title);
+        books.stream().forEach(System.out::println);
+    }
+
+    private void filterBooksByPrice() {
+        Float lowerBound = readPrice();
+        Float upperBound = readPrice();
+        Set<Book> books = bookController.filterBooksByPrice(lowerBound, upperBound);
         books.stream().forEach(System.out::println);
     }
 
@@ -305,12 +340,12 @@ public class Console {
                     updateBook();
                     break;
                 case 5:
-                    // TODO: 27/02/16
+                    filterBooksByTitle();
                     break;
                 case 6:
                     filterBooksByAuthor();
                 case 7:
-                    // TODO: 27/02/16
+                    filterBooksByPrice();
                     break;
                 case 8:
                     printAllClients();
