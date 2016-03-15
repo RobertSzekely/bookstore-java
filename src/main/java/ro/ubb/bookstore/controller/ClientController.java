@@ -19,18 +19,38 @@ public class ClientController {
         this.IRepository = IRepository;
     }
 
+    /**
+     * Adds a client to the repository
+     *
+     * @param client
+     * @return
+     */
     public void addClient(Client client) throws ValidatorException {
         IRepository.save(client);
     }
 
+    /**
+     * Deletes a client from the
+     *
+     * @param id
+     */
     public void  deleteClient(long id) throws IllegalArgumentException {
         IRepository.delete(id);
     }
-
+    /**
+     * Updates a client in the repository.
+     *
+     * @param client
+     */
     public void updateClient(Client client) throws ValidatorException {
         IRepository.update(client);
     }
 
+    /**
+     * Returns all clients whose last name  contain the given string.
+     *
+     * @param s
+     */
     public Set<Client> filterClientsByLastName(String s) {
         Iterable<Client> clients = IRepository.findAll();
 
@@ -40,7 +60,11 @@ public class ClientController {
 
         return filteredClients;
     }
-
+    /**
+     * Returns all clients from the repository.
+     *
+     * @return
+     */
     public Set<Client> getAllClients() {
         Iterable<Client> clients = IRepository.findAll();
         return StreamSupport.stream(clients.spliterator(), false).collect(Collectors.toSet());
