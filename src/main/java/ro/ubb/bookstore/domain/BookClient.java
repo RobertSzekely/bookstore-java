@@ -4,27 +4,27 @@ package main.java.ro.ubb.bookstore.domain;
  * Created by Bianca on 13/03/2016.
  */
 public class BookClient extends BaseEntity<Long> {
-    Long bookID;
-    Long clientID;
+    Book book;
+    Client client;
 
     // Constructor (id is automatically assigned by constructor)
-    public BookClient(Long _bookID, Long _clientID) {
-        this.bookID = _bookID;
-        this.clientID = _clientID;
+    public BookClient(Book _book, Client _client) {
+        this.book = _book;
+        this.client = _client;
     }
 
     /*----------------------Getters-------------------------*/
 
-    public Long getBookID() { return bookID; }
+    public Book getBook() { return book; }
 
-    public Long getClientID() { return clientID; }
+    public Client getClient() { return client; }
 
 
     /*----------------------Setters-------------------------*/
 
-    public void setBookID(Long _bookID) { this.bookID = _bookID; }
+    public void setBook(Book _book) { this.book = _book; }
 
-    public void setClientID(Long _clientID) { this.clientID = _clientID; }
+    public void setClient(Client _client) { this.client = _client; }
 
 
     @Override
@@ -34,13 +34,13 @@ public class BookClient extends BaseEntity<Long> {
 
         BookClient bc = (BookClient) o;
 
-        if(bookID != bc.bookID) return false;
-        return clientID.equals(bc.clientID);
+        if(!book.equals(bc.book)) return false;
+        return client.equals(bc.client);
     }
 
     @Override
     public String toString() {
-        return "Book id:{" + bookID + "} " +
-                "Client id:{" + clientID + "} " + super.toString();
+        return "Book :{" + book.toString() + "} \n" +
+                "Client :{" + client.toString() + "} \n" + super.toString() + "\n";
     }
 }

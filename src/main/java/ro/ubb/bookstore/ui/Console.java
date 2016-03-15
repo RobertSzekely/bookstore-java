@@ -11,9 +11,7 @@ import main.java.ro.ubb.bookstore.domain.Validators.ValidatorException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Locale;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by robertszekely on 27/02/16.
@@ -96,32 +94,64 @@ public class Console {
     }
 
     private void addBookClients() {
-        long unu = 1;
-        long doi = 2;
-        long trei = 3;
-        long patru = 4;
-
-        BookClient bc1 = new BookClient(unu, doi);
+        Book book1 = new Book("The Book Thief", "Zusak Markus", "Young Adult", 55);
         long id1 = 1;
-        bc1.setId(id1);
+        book1.setId(id1);
 
-        BookClient bc2 = new BookClient(doi, unu);
+        Book book2 = new Book("The Darkest Minds", "Bracken Alexandra", "Dystopian", 34);
         long id2 = 2;
-        bc2.setId(id2);
+        book2.setId(id2);
 
-        BookClient bc3 = new BookClient(trei, patru);
+        Book book3 = new Book("Harry Potter and The Philosopher's Stone", "J.K. Rowling", "Childern", 45);
         long id3 = 3;
-        bc3.setId(id3);
+        book3.setId(id3);
 
-        BookClient bc4 = new BookClient(patru, trei);
+        Book book4 = new Book("The Perks of Being a Wallflower", "Stephen Chbosky", "Contemporary", 39);
         long id4 = 4;
-        bc4.setId(id4);
+        book4.setId(id4);
+
+        Client client1 = new Client("Marius", "Farcas", "marius@gmail.com", "123");
+        long id5 = 1;
+        client1.setId(id5);
+
+        Client client2 = new Client("Robert", "Szekely", "robibobi@yahoo.ro", "074sterge");
+        long id6 = 2;
+        client2.setId(id6);
+
+        Client client3 = new Client("Sergiu", "Sima", "sebi@gmail.com", "cantbecontacted");
+        long id7 = 3;
+        client3.setId(id7);
+
+        Client client4 = new Client("2Anca", "Sfiriac", "whatever@gmail.com", "youwish");
+        long id8 = 4;
+        client4.setId(id8);
+
+        BookClient bc1 = new BookClient(book1, client2);
+        long idd1 = 1;
+        bc1.setId(idd1);
+
+        BookClient bc2 = new BookClient(book2, client1);
+        long idd2 = 2;
+        bc2.setId(idd2);
+
+        BookClient bc3 = new BookClient(book3, client4);
+        long idd3 = 3;
+        bc3.setId(idd3);
+
+        BookClient bc4 = new BookClient(book4, client3);
+        long idd4 = 4;
+        bc4.setId(idd4);
+
+        BookClient bc5 = new BookClient(book4, client2);
+        long idd5 = 5;
+        bc5.setId(idd5);
 
         try {
             bookClientController.addBookClient(bc1);
             bookClientController.addBookClient(bc2);
             bookClientController.addBookClient(bc3);
             bookClientController.addBookClient(bc4);
+            bookClientController.addBookClient(bc5);
         } catch (ValidatorException ex) {
             ex.printStackTrace();
         }
@@ -145,7 +175,7 @@ public class Console {
                 + "(11) Delete a client\n"
                 + "(12) Update a client\n"
                 + "(13) Filter clients by last name\n"
-                + "(14) Filter clients by total money spent\n"
+                + "(14) Sort clients by total money spent\n"
                 + "(15) Print list of books bought by clients\n"
         );
 
@@ -396,7 +426,7 @@ public class Console {
                 e.printStackTrace();
             }
 
-            BookClient bc = new BookClient(book.getId(), client.getId());
+            BookClient bc = new BookClient(book, client);
             bc.setId(id);
 
             try {
@@ -405,6 +435,34 @@ public class Console {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void sortClients() {
+        Set<BookClient> bookClients = bookClientController.getAllBookClients();
+        Map<Long, Float> sortedClients = new HashMap<>();
+
+        for (BookClient bc : bookClients) {
+            if (!sortedClients.containsKey(bc.getClient().getId())) {
+                sortedClients.put(bc.getClient().getId(), bc.getBook().getPrice());
+            }
+            else {
+                Float price = sortedClients.get(bc.getClient().getId());
+                Float price2 = price + bc.getBook().getPrice();
+                sortedClients.replace(bc.getClient().getId(), price, price2);
+            }
+        }
+        sortedClients.entrySet().stream()
+                .sorted(Map.Entry.<Long, Float>comparingByValue().reversed())
+                .limit(10)
+                .forEach(System.out::println);
+
+        /*
+        sortedClients.forEach((k,v)->{
+            System.out.println("Item : " + clientController.getClientByID(k) + " Count : " + v);
+        });
+
+        */
+        //System.out.println(sortedClients.toString());
     }
 
 
@@ -461,7 +519,7 @@ public class Console {
                     filterClientsByLastName();
                     break;
                 case 14:
-                    // TODO: 27/02/16
+                    sortClients();
                     break;
                 case 15:
                     printAllBookClients();

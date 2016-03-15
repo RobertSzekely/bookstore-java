@@ -37,4 +37,5 @@ public class BookClientController {
         Iterable<BookClient> bookClients = IRepository.findAll();
         return StreamSupport.stream(bookClients.spliterator(), false).collect(Collectors.toSet());
     }
+
 }

@@ -69,4 +69,14 @@ public class ClientController {
         Iterable<Client> clients = IRepository.findAll();
         return StreamSupport.stream(clients.spliterator(), false).collect(Collectors.toSet());
     }
+
+    public Client getClientByID(Long id) {
+        Iterable<Client> clients = IRepository.findAll();
+
+        for (Client c: clients)
+            if (c.getId() == id)
+                return c;
+
+        return  null;
+    }
 }
