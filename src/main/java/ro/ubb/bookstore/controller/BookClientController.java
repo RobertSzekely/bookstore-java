@@ -19,10 +19,20 @@ public class BookClientController {
         this.IRepository = IRepository;
     }
 
+    /**
+     * Adds a bookClient to the repository
+     *
+     * @param bookClient
+     */
     public void addBookClient(BookClient bookClient) throws ValidatorException {
         IRepository.save(bookClient);
     }
 
+    /**
+     * Returns all the Clients from the repository that bought a book
+     *
+     * @return
+     */
     public Set<BookClient> getAllBookClients() {
         Iterable<BookClient> bookClients = IRepository.findAll();
         return StreamSupport.stream(bookClients.spliterator(), false).collect(Collectors.toSet());
