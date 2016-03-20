@@ -33,7 +33,7 @@ public class Console {
         //printMainMenu();
         //addBook();
         //printAllBooks();
-        addSomeBooks();
+        //addSomeBooks();
         addSomeClients();
         addBookClients();
         mainMenu();

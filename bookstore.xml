@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bookstore>
+    <book category="youngAdult">
+        <id>1</id>
+        <title>The Book Thief</title>
+        <author>Zusak Markus</author>
+        <price>55</price>
+    </book>
+    <book category="dystopian">
+        <id>2</id>
+        <title>The Darkest Minds</title>
+        <author>Bracken Alexandra</author>
+        <price>34</price>
+    </book>
+    <book category="children">
+        <id>3</id>
+        <title>Harry Potter and The Philosopher's Stone</title>
+        <author>J K. Rowling</author>
+        <price>45</price>
+    </book>
+    <book category="contemporary">
+        <id>4</id>
+        <title>The Perks of Being a Wallflower</title>
+        <author>Stephen Chbosky</author>
+        <price>39</price>
+    </book>
+</bookstore>

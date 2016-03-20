@@ -11,7 +11,6 @@ public class Book extends BaseEntity<Long> {
 
     public Book() { }
 
-    //toodo Modifications on branch develop
 
     //Constructor (id is automatically assigned to each book)
     public Book(String _title, String _author, String _category, float _price) {
@@ -22,7 +21,6 @@ public class Book extends BaseEntity<Long> {
     }
 
 
-    //commit me.
     /*-------------------Getters--------------------------*/
 
 

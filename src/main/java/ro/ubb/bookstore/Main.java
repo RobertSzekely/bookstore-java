@@ -7,11 +7,11 @@ import main.java.ro.ubb.bookstore.domain.Book;
 import main.java.ro.ubb.bookstore.domain.BookClient;
 import main.java.ro.ubb.bookstore.domain.Client;
 import main.java.ro.ubb.bookstore.domain.Validators.*;
+import main.java.ro.ubb.bookstore.repository.BookXmlRepository;
 import main.java.ro.ubb.bookstore.repository.InMemoryRepository;
 import main.java.ro.ubb.bookstore.ui.Console;
 import main.java.ro.ubb.bookstore.repository.IRepository;
 import java.util.Scanner;
-import java.util.Set;
 
 public class Main {
 
@@ -20,8 +20,14 @@ public class Main {
 
         Scanner input  = new Scanner(System.in);
 
+        /*
         Validator<Book> bookValidator = new BookValidator();
         IRepository<Long, Book> bookRepository = new InMemoryRepository<>(bookValidator);
+        BookController bookController = new BookController(bookRepository);
+        */
+
+        Validator<Book> bookValidator = new BookValidator();
+        IRepository<Long, Book> bookRepository = new BookXmlRepository(bookValidator, "bookstore.xml");
         BookController bookController = new BookController(bookRepository);
 
         Validator<Client> clientValidator = new ClientValidator();
