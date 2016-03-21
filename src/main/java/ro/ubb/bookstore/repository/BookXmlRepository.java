@@ -4,10 +4,11 @@ import main.java.ro.ubb.bookstore.domain.Book;
 import main.java.ro.ubb.bookstore.domain.Validators.Validator;
 import main.java.ro.ubb.bookstore.domain.Validators.ValidatorException;
 import main.java.ro.ubb.bookstore.util.XmlBookReader;
-import main.java.ro.ubb.bookstore.util.XmlWriter;
+import main.java.ro.ubb.bookstore.util.XmlBookWriter;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -51,7 +52,19 @@ public class BookXmlRepository extends InMemoryRepository<Long, Book> {
         if (optional.isPresent()) {
             return optional;
         }
-        new XmlWriter<Long, Book>(fileName).save(entity);
+
+        try {
+            new XmlBookWriter(fileName).saveData(entity);
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+
         return Optional.empty();
     }
 }
