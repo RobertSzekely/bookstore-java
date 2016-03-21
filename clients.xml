@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><clients>
+    <client email="marius@gmail.com">
+        <id>1</id>
+        <firstName>Marius</firstName>
+        <lastName>Farcas</lastName>
+        <telephone>123</telephone>
+    </client>
+    <client email="robibobi@yahoo.ro">
+        <id>2</id>
+        <firstName>Robert</firstName>
+        <lastName>Szekely</lastName>
+        <telephone>074sterge</telephone>
+    </client>
+    <client email="sebi@gmail.com">
+        <id>3</id>
+        <firstName>Sergiu</firstName>
+        <lastName>Sima</lastName>
+        <telephone>cantbecontacte</telephone>
+    </client>
+    <client email="whatever@gmail.com">
+        <id>4</id>
+        <firstName>2Anca</firstName>
+        <lastName>Sfiriac</lastName>
+        <telephone>youwishyouhadit</telephone>
+    </client>
+<client email="foarte"><id>5</id><firstName>bia</firstName><lastName>e</lastName><telephone>tare</telephone></client></clients>

@@ -8,6 +8,7 @@ import main.java.ro.ubb.bookstore.domain.BookClient;
 import main.java.ro.ubb.bookstore.domain.Client;
 import main.java.ro.ubb.bookstore.domain.Validators.*;
 import main.java.ro.ubb.bookstore.repository.BookXmlRepository;
+import main.java.ro.ubb.bookstore.repository.ClientXmlRepository;
 import main.java.ro.ubb.bookstore.repository.InMemoryRepository;
 import main.java.ro.ubb.bookstore.ui.Console;
 import main.java.ro.ubb.bookstore.repository.IRepository;
@@ -24,6 +25,10 @@ public class Main {
         Validator<Book> bookValidator = new BookValidator();
         IRepository<Long, Book> bookRepository = new InMemoryRepository<>(bookValidator);
         BookController bookController = new BookController(bookRepository);
+
+        Validator<Client> clientValidator = new ClientValidator();
+        IRepository<Long, Client> clientRepository = new InMemoryRepository<>(clientValidator);
+        ClientController clientController = new ClientController(clientRepository);
         */
 
         Validator<Book> bookValidator = new BookValidator();
@@ -31,7 +36,7 @@ public class Main {
         BookController bookController = new BookController(bookRepository);
 
         Validator<Client> clientValidator = new ClientValidator();
-        IRepository<Long, Client> clientRepository = new InMemoryRepository<>(clientValidator);
+        IRepository<Long, Client> clientRepository = new ClientXmlRepository(clientValidator, "clients.xml");
         ClientController clientController = new ClientController(clientRepository);
 
         Validator<BookClient> bookClientValidator = new BookClientValidator();

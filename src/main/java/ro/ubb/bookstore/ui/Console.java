@@ -34,7 +34,7 @@ public class Console {
         //addBook();
         //printAllBooks();
         //addSomeBooks();
-        addSomeClients();
+        //addSomeClients();
         addBookClients();
         mainMenu();
     }
@@ -208,7 +208,7 @@ public class Console {
     }
 
     private Long readId() {
-        System.out.println("Enter book id: ");
+        System.out.println("Enter id: ");
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         try {
             return Long.valueOf(bufferedReader.readLine());
