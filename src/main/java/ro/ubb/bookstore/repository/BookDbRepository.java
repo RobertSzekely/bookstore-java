@@ -28,8 +28,29 @@ public class BookDbRepository implements IRepository<Long, Book> {
 
     @Override
     public Optional<Book> findOne(Long id) {
-        //TODO
+        if (id == null) {
+            throw new IllegalArgumentException("id must not be null");
+        }
+        try (Connection connection = DriverManager.getConnection(url, username, password);
+            PreparedStatement statement = connection.prepareStatement("SELECT * from book WHERE bookid=?")) {
+            statement.setLong(1, id);
+            try(ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    Long bookid = resultSet.getLong("bookid");
+                    String title = resultSet.getString("title");
+                    String author = resultSet.getString("author");
+                    String category = resultSet.getString("category");
+                    Float price = resultSet.getFloat("price");
 
+
+                    Book book = new Book(title, author, category, price);
+                    book.setId(bookid);
+                    return Optional.of(book);
+                }
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
         return Optional.empty();
     }
 
@@ -38,7 +59,7 @@ public class BookDbRepository implements IRepository<Long, Book> {
     public Iterable<Book> findAll() {
         Set<Book> books = new HashSet<>();
         try (Connection connection = DriverManager.getConnection(url, username, password);
-             PreparedStatement statement = connection.prepareStatement("SELECT * FROM Book");
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM book");
              ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
