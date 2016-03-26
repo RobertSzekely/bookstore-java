@@ -7,11 +7,9 @@ import main.java.ro.ubb.bookstore.domain.Book;
 import main.java.ro.ubb.bookstore.domain.BookClient;
 import main.java.ro.ubb.bookstore.domain.Client;
 import main.java.ro.ubb.bookstore.domain.Validators.*;
-import main.java.ro.ubb.bookstore.repository.BookXmlRepository;
-import main.java.ro.ubb.bookstore.repository.ClientXmlRepository;
-import main.java.ro.ubb.bookstore.repository.InMemoryRepository;
+import main.java.ro.ubb.bookstore.repository.*;
 import main.java.ro.ubb.bookstore.ui.Console;
-import main.java.ro.ubb.bookstore.repository.IRepository;
+
 import java.util.Scanner;
 
 public class Main {
@@ -31,8 +29,15 @@ public class Main {
         ClientController clientController = new ClientController(clientRepository);
         */
 
+
+        //Validator<Book> bookValidator = new BookValidator();
+        //IRepository<Long, Book> bookRepository = new BookXmlRepository(bookValidator, "bookstore.xml";
+        //BookController bookController = new BookController(bookRepository);
+
+
+        String url = "jdbc:postgresql://localhols:5432/BookStore";
         Validator<Book> bookValidator = new BookValidator();
-        IRepository<Long, Book> bookRepository = new BookXmlRepository(bookValidator, "bookstore.xml");
+        IRepository<Long, Book> bookRepository = new BookDbRepository(url, System.getProperty("username"), System.getProperty("password"), bookValidator);
         BookController bookController = new BookController(bookRepository);
 
         Validator<Client> clientValidator = new ClientValidator();
