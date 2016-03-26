@@ -35,7 +35,8 @@ public class Main {
         //BookController bookController = new BookController(bookRepository);
 
 
-        String url = "jdbc:postgresql://localhols:5432/BookStore";
+        //jdbc:postgresql://host:port/database
+        String url = "jdbc:postgresql://localhost:5432/bookstore";
         Validator<Book> bookValidator = new BookValidator();
         IRepository<Long, Book> bookRepository = new BookDbRepository(url, System.getProperty("username"), System.getProperty("password"), bookValidator);
         BookController bookController = new BookController(bookRepository);
