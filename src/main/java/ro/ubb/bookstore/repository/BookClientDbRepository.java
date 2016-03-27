@@ -102,7 +102,25 @@ public class BookClientDbRepository implements IRepository<Long, BookClient> {
 
     @Override
     public Optional<BookClient> save(BookClient entity) throws ValidatorException {
-        return null;
+        if (entity == null) {
+            throw new IllegalArgumentException("entity must not be null");
+        }
+        validator.validate(entity);
+
+        try (Connection connection = DriverManager.getConnection(url, username, password);
+             PreparedStatement statement = connection.prepareStatement("INSERT into bookclient (bookid, clientid) VALUES (?,?)")) {
+
+            statement.setLong(1, entity.getBook().getId());
+            statement.setLong(2, entity.getClient().getId());
+
+            statement.executeQuery();
+
+            return Optional.empty();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Optional.of(entity);
     }
 
     @Override
