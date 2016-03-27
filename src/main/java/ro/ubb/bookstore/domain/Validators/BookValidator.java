@@ -5,7 +5,7 @@ import main.java.ro.ubb.bookstore.domain.Book;
 /**
  * Created by robertszekely on 06/03/16.
  */
-public class BookValidator implements Validator<Book> {
+public class BookValidator implements Validator<Long, Book> {
 
     @Override
     public void validate(Book entity) throws ValidatorException{

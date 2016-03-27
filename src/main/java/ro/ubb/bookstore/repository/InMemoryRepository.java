@@ -14,9 +14,9 @@ public class InMemoryRepository<ID, T extends BaseEntity<ID>> implements IReposi
 
 
     private Map<ID, T> entities;
-    private Validator<T> validator;
+    private Validator<ID, T> validator;
 
-    public InMemoryRepository(Validator<T> validator) {
+    public InMemoryRepository(Validator<ID, T> validator) {
         this.validator = validator;
         entities = new HashMap<>();
     }

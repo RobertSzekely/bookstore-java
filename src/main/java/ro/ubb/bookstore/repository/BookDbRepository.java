@@ -17,9 +17,9 @@ public class BookDbRepository implements IRepository<Long, Book> {
     private String url;
     private String username;
     private String password;
-    private Validator<Book> validator;
+    private Validator<Long, Book> validator;
 
-    public BookDbRepository(String url, String username, String password, Validator<Book> validator) {
+    public BookDbRepository(String url, String username, String password, Validator<Long, Book> validator) {
         this.url = url;
         this.username = username;
         this.password = password;

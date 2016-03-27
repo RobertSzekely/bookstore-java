@@ -19,7 +19,7 @@ import java.util.Optional;
 public class BookXmlRepository extends InMemoryRepository<Long, Book> {
     private String fileName;
 
-    public BookXmlRepository(Validator<Book> validator, String fileName) {
+    public BookXmlRepository(Validator<Long, Book> validator, String fileName) {
         super(validator);
         this.fileName = fileName;
 

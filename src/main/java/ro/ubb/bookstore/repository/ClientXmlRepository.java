@@ -20,7 +20,7 @@ import java.util.Optional;
 public class ClientXmlRepository extends InMemoryRepository<Long, Client> {
     private String fileName;
 
-    public ClientXmlRepository(Validator<Client> validator, String fileName) {
+    public ClientXmlRepository(Validator<Long, Client> validator, String fileName) {
         super(validator);
         this.fileName = fileName;
 

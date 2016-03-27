@@ -17,35 +17,33 @@ public class Main {
 
     public static void main(String [] args) {
 
-        Scanner input  = new Scanner(System.in);
-
         /*
-        Validator<Book> bookValidator = new BookValidator();
+        Validator<Long, Book> bookValidator = new BookValidator();
         IRepository<Long, Book> bookRepository = new InMemoryRepository<>(bookValidator);
         BookController bookController = new BookController(bookRepository);
 
-        Validator<Client> clientValidator = new ClientValidator();
+        Validator<Long, Client> clientValidator = new ClientValidator();
         IRepository<Long, Client> clientRepository = new InMemoryRepository<>(clientValidator);
         ClientController clientController = new ClientController(clientRepository);
         */
 
 
-        //Validator<Book> bookValidator = new BookValidator();
+        //Validator<Long, Book> bookValidator = new BookValidator();
         //IRepository<Long, Book> bookRepository = new BookXmlRepository(bookValidator, "bookstore.xml";
         //BookController bookController = new BookController(bookRepository);
 
 
         //jdbc:postgresql://host:port/database
-        String url = "jdbc:postgresql://localhost:5432/bookstore";
-        Validator<Book> bookValidator = new BookValidator();
-        IRepository<Long, Book> bookRepository = new BookDbRepository(url, System.getProperty("username"), System.getProperty("password"), bookValidator);
+        String url = "jdbc:postgresql://localhost:5432/postgres";
+        Validator<Long,Book> bookValidator = new BookValidator();
+        IRepository<Long, Book> bookRepository = new BookDbRepository(url, "your username here", "your password here" , bookValidator);
         BookController bookController = new BookController(bookRepository);
 
-        Validator<Client> clientValidator = new ClientValidator();
+        Validator<Long,Client> clientValidator = new ClientValidator();
         IRepository<Long, Client> clientRepository = new ClientXmlRepository(clientValidator, "clients.xml");
         ClientController clientController = new ClientController(clientRepository);
 
-        Validator<BookClient> bookClientValidator = new BookClientValidator();
+        Validator<Long, BookClient> bookClientValidator = new BookClientValidator();
         IRepository<Long, BookClient> bookClientRepository = new InMemoryRepository<>(bookClientValidator);
         BookClientController bookClientController = new BookClientController(bookClientRepository);
 
