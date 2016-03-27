@@ -1,29 +1,24 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+BookStore
 
-### What is this repository for? ###
+A book publisher manages information about books and clients.
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+### This application allows you to: ###
 
-### How do I get set up? ###
+* List all the books
+* Add a book
+* Delete a book
+* Update a book
+* Filter books by title
+* Filter books by author
+* Filter books by price
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+* List all clients
+* Add a record of a client that buys a book
+* Add a client
+* Delete a client
+* Update a client
+* Filter clients by last name
+* Sort clients by total amount of money spent
+* List books bought by clients
