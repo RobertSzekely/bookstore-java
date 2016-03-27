@@ -83,8 +83,27 @@ public class BookDbRepository implements IRepository<Long, Book> {
 
     @Override
     public Optional<Book> save (Book entity) throws ValidatorException {
-        //TODO
+        if(entity == null) {
+            throw new IllegalArgumentException("entity must not be null");
+        }
+        //Validator.validate(entity);
 
+        try (Connection connection = DriverManager.getConnection(url, username, password);
+            PreparedStatement statement = connection.prepareStatement("INSERT into book (bookid, title, author, category, price) VALUES (?,?,?,?,?)")) {
+
+            statement.setLong(1, entity.getId());
+            statement.setString(2, entity.getTitle());
+            statement.setString(3, entity.getAuthor());
+            statement.setString(4, entity.getCategory());
+            statement.setFloat(5, entity.getPrice());
+
+            statement.executeQuery();
+
+            return Optional.empty();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return Optional.of(entity);
     }
 
