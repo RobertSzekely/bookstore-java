@@ -86,7 +86,7 @@ public class BookDbRepository implements IRepository<Long, Book> {
         if(entity == null) {
             throw new IllegalArgumentException("entity must not be null");
         }
-        //Validator.validate(entity);
+        validator.validate(entity);
 
         try (Connection connection = DriverManager.getConnection(url, username, password);
             PreparedStatement statement = connection.prepareStatement("INSERT into book (bookid, title, author, category, price) VALUES (?,?,?,?,?)")) {
@@ -130,7 +130,26 @@ public class BookDbRepository implements IRepository<Long, Book> {
 
     @Override
     public Optional<Book> update (Book entity) throws ValidatorException {
-        //TODO
+        if(entity == null) {
+            throw new IllegalArgumentException("entity must not be null");
+        }
+
+        validator.validate(entity);
+
+        try (Connection connection = DriverManager.getConnection(url, username, password);
+                PreparedStatement statement = connection.prepareStatement("UPDATE book SET title=?, author=?, category=?, price=? WHERE bookid=?")) {
+            statement.setString(1, entity.getTitle());
+            statement.setString(2, entity.getAuthor());
+            statement.setString(3, entity.getCategory());
+            statement.setFloat(4, entity.getPrice());
+            statement.setLong(5, entity.getId());
+
+            statement.executeUpdate();
+
+            return Optional.empty();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         return Optional.of(entity);
     }
