@@ -109,11 +109,23 @@ public class BookDbRepository implements IRepository<Long, Book> {
 
     @Override
     public  Optional<Book> delete(Long id) {
-        //TODO
+        if (id == null) {
+            throw new IllegalArgumentException("id must not be null");
+        }
+        Optional<Book> book = findOne(id);
 
-        Optional<Book> books = findOne(id);
+        try (Connection connection = DriverManager.getConnection(url, username, password);
+                PreparedStatement statement = connection.prepareStatement("DELETE FROM book WHERE bookid=?")) {
+            statement.setLong(1, id);
 
-        return books;
+            statement.executeUpdate();
+
+            return Optional.empty();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return book;
     }
 
     @Override
