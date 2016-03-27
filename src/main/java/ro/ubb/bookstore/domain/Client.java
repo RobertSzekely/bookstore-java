@@ -11,7 +11,9 @@ public class Client extends BaseEntity<Long> {
     private String lastName;
     private String email;
     private String telephone;
+    private static long nrOfClients = 0;
 
+    public Client() { }
 
     //Constructor (id is automatically assigned by constructor)
     public Client( String _firstName, String _lastName, String _email, String _telephone) {
@@ -19,6 +21,7 @@ public class Client extends BaseEntity<Long> {
         this.lastName = _lastName;
         this.email = _email;
         this.telephone = _telephone;
+        nrOfClients++;
     }
 
     /*----------------------Getters-------------------------*/
@@ -37,6 +40,10 @@ public class Client extends BaseEntity<Long> {
 
     public String getTelephone() {
         return telephone;
+    }
+
+    public long getNrOfClients() {
+        return nrOfClients;
     }
 
 

@@ -36,7 +36,7 @@ public class Main {
         //jdbc:postgresql://host:port/database
         String url = "jdbc:postgresql://localhost:5432/postgres";
         Validator<Long,Book> bookValidator = new BookValidator();
-        IRepository<Long, Book> bookRepository = new BookDbRepository(url, "your username here", "your password here" , bookValidator);
+        IRepository<Long, Book> bookRepository = new BookDbRepository(url, "your Db username here", "your Db password here" , bookValidator);
         BookController bookController = new BookController(bookRepository);
 
         Validator<Long,Client> clientValidator = new ClientValidator();
@@ -44,7 +44,7 @@ public class Main {
         ClientController clientController = new ClientController(clientRepository);
 
         Validator<Long, BookClient> bookClientValidator = new BookClientValidator();
-        IRepository<Long, BookClient> bookClientRepository = new InMemoryRepository<>(bookClientValidator);
+        IRepository<Long, BookClient> bookClientRepository = new BookClientDbRepository(url, "your Db username", "your Db password here", bookClientValidator);
         BookClientController bookClientController = new BookClientController(bookClientRepository);
 
         Console console = new Console(bookController, clientController, bookClientController);

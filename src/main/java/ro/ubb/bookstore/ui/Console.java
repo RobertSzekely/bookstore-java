@@ -6,6 +6,7 @@ import main.java.ro.ubb.bookstore.controller.ClientController;
 import main.java.ro.ubb.bookstore.domain.Book;
 import main.java.ro.ubb.bookstore.domain.BookClient;
 import main.java.ro.ubb.bookstore.domain.Client;
+import main.java.ro.ubb.bookstore.domain.Validators.Validator;
 import main.java.ro.ubb.bookstore.domain.Validators.ValidatorException;
 
 import java.io.BufferedReader;
@@ -35,7 +36,7 @@ public class Console {
         //printAllBooks();
         //addSomeBooks();
         //addSomeClients();
-        addBookClients();
+        //addBookClients();
         mainMenu();
     }
 
@@ -196,8 +197,8 @@ public class Console {
             Float price = Float.valueOf(bufferedReader.readLine());
 
             Book book = new Book(title, author, category, price);
+            //book.setId(book.getNrOfBooks());
             book.setId(id);
-
             return book;
 
         } catch (IOException ex) {
@@ -402,18 +403,95 @@ public class Console {
         bookClients.stream().forEach(System.out::println);
     }
 
+//    private void buyBook() {
+//        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+//        Long id = null;
+//
+//        try {
+//            id = Long.valueOf(bufferedReader.readLine());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        Client client = readClient();
+//        Book book = readBook();
+//
+//        if (!bookController.checkExistance(book)) {
+//            System.out.println("Book is not available.");
+//        }
+//        else {
+//
+//            try {
+//                clientController.addClient(client);
+//            } catch (ValidatorException e) {
+//                e.printStackTrace();
+//            }
+//
+//            BookClient bc = new BookClient(book, client);
+//            bc.setId(id);
+//
+//            try {
+//                bookClientController.addBookClient(bc);
+//            } catch (ValidatorException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
+    private Long readBookId() {
+        System.out.println("Enter book id: ");
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            return Long.valueOf(bufferedReader.readLine());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+
+    }
+    private Long readClientkId() {
+        System.out.println("Enter client id: ");
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            return Long.valueOf(bufferedReader.readLine());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+
+    }
     private void buyBook() {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        Long id = null;
+        int confirm=0;
+        Book book = null;
+        Client client = null;
+        boolean condition;
+        do {
 
-        try {
-            id = Long.valueOf(bufferedReader.readLine());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            Long clientid = readClientkId();
+            client = clientController.getClientByID(clientid);
 
-        Client client = readClient();
-        Book book = readBook();
+            Long bookid = readBookId();
+            book = bookController.getBookByID(bookid);
+
+
+            System.out.print("Client: "+ client.getFirstName() + " " +client.getLastName() + "\n");
+            System.out.print("Book: " +book.getTitle() + " by "+ book.getAuthor() +"\n");
+
+            System.out.print("Confirm? (1 = YES / 0 = NO)");
+
+            try {
+                confirm = Integer.valueOf(bufferedReader.readLine());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            if (confirm == 1) {
+                condition = false;
+            } else {
+                condition = true;
+            }
+
+        } while (condition);
 
         if (!bookController.checkExistance(book)) {
             System.out.println("Book is not available.");
@@ -427,7 +505,7 @@ public class Console {
             }
 
             BookClient bc = new BookClient(book, client);
-            bc.setId(id);
+            //bc.setId(id);
 
             try {
                 bookClientController.addBookClient(bc);
@@ -435,6 +513,8 @@ public class Console {
                 e.printStackTrace();
             }
         }
+
+
     }
 
     private void sortClients() {

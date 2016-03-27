@@ -69,6 +69,7 @@ public class BookDbRepository implements IRepository<Long, Book> {
                 String category = resultSet.getString("Category");
                 Float price = resultSet.getFloat("Price");
 
+                //Book book = new Book(id, title, author, category, price); //calling the constructor that doesn't increment nrOfBooks <---Will come back to this later :(
                 Book book = new Book(title, author, category, price);
                 book.setId(id);
                 books.add(book);
@@ -152,6 +153,22 @@ public class BookDbRepository implements IRepository<Long, Book> {
         }
 
         return Optional.of(entity);
+    }
+
+    public long getBiggestID () {
+        try (Connection connection = DriverManager.getConnection(url, username, password);
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM book WHERE bookid=(SELECT MAX (bookid) FROM book)")) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    Long bookid = resultSet.getLong("bookid");
+                    return bookid;
+                }
+            }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+        }
+        return 0;
     }
 
 

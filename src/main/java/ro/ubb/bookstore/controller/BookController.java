@@ -1,10 +1,12 @@
 package main.java.ro.ubb.bookstore.controller;
 
+import com.sun.org.apache.bcel.internal.generic.IREM;
 import main.java.ro.ubb.bookstore.domain.Book;
 import main.java.ro.ubb.bookstore.domain.Validators.ValidatorException;
 import main.java.ro.ubb.bookstore.repository.IRepository;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -117,6 +119,16 @@ public class BookController {
                 return true;
 
         return  false;
+    }
+
+    public Book getBookByID(Long id) {
+        Iterable<Book> books = IRepository.findAll();
+
+        for (Book b: books)
+            if (b.getId() == id)
+                return b;
+
+        return  null;
     }
 
 }

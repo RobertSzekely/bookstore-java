@@ -8,6 +8,7 @@ public class Book extends BaseEntity<Long> {
     private String author;
     private String category;
     private float price;
+    //private static long nrOfBooks = 0;
 
     public Book() { }
 
@@ -18,7 +19,15 @@ public class Book extends BaseEntity<Long> {
         this.author = _author;
         this.category = _category;
         this.price = _price;
+        //nrOfBooks++;
     }
+
+//    public  Book(long id, String title, String author, String category, float price) {
+//        this.title = title;
+//        this.author = author;
+//        this.category = category;
+//        this.price = price;
+//    }
 
 
     /*-------------------Getters--------------------------*/
@@ -39,6 +48,10 @@ public class Book extends BaseEntity<Long> {
     public float getPrice() {
         return price;
     }
+
+//    public long getNrOfBooks() {
+//        return nrOfBooks;
+//    }
 
 
     /*---------------------Setters----------------------------*/
