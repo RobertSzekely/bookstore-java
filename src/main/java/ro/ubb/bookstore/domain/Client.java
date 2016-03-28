@@ -7,24 +7,24 @@ import com.sun.xml.internal.bind.v2.model.core.ID;
  */
 public class Client extends BaseEntity<Long> {
 
-    private String CNP;
     private String firstName;
     private String lastName;
     private String email;
     private String telephone;
+    //private static long nrOfClients = 0;
 
+    public Client() { }
 
     //Constructor (id is automatically assigned by constructor)
-    public Client(String _CNP, String _firstName, String _lastName, String _email, String _telephone) {
-        this.CNP = _CNP;
+    public Client( String _firstName, String _lastName, String _email, String _telephone) {
         this.firstName = _firstName;
         this.lastName = _lastName;
         this.email = _email;
         this.telephone = _telephone;
+        //nrOfClients++;
     }
 
     /*----------------------Getters-------------------------*/
-    public String getCNP() {return CNP;}
 
     public String getFirstName() {
         return firstName;
@@ -42,9 +42,12 @@ public class Client extends BaseEntity<Long> {
         return telephone;
     }
 
+   // public long getNrOfClients() {
+//        return nrOfClients;
+ //   }
+
 
     /*-----------------------Setters---------------------------*/
-    public void setCNP(String new_CNP) {this.CNP = new_CNP;}
 
     public void setFirstName(String new_firstName) {
         this.firstName = new_firstName;
@@ -68,7 +71,6 @@ public class Client extends BaseEntity<Long> {
 
         Client client = (Client) o;
 
-        if(CNP != client.CNP) return false;
         if(firstName != client.firstName) return false;
         if(lastName != client.lastName) return false;
         if(email != client.email) return false;
@@ -77,11 +79,10 @@ public class Client extends BaseEntity<Long> {
     }
 
 
-    //@Override
-    public String toStirng() {
+    @Override
+    public String toString() {
         return "Client{" +
-                "CNP='" + CNP + '\'' +
-                ", firstName='" + firstName + '\'' +
+                "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", telephone='" +telephone +

@@ -4,26 +4,34 @@ package main.java.ro.ubb.bookstore.domain;
  * Created by robertszekely on 27/02/16.
  */
 public class Book extends BaseEntity<Long> {
-    private String ISBN;
     private String title;
     private String author;
+    private String category;
     private float price;
+    //private static long nrOfBooks = 0;
 
     public Book() { }
 
+
     //Constructor (id is automatically assigned to each book)
-    public Book(String _ISBN, String _title, String _author, float _price) {
-        this.ISBN = _ISBN;
+    public Book(String _title, String _author, String _category, float _price) {
         this.title = _title;
         this.author = _author;
+        this.category = _category;
         this.price = _price;
+        //nrOfBooks++;
     }
+
+//    public  Book(long id, String title, String author, String category, float price) {
+//        this.title = title;
+//        this.author = author;
+//        this.category = category;
+//        this.price = price;
+//    }
+
 
     /*-------------------Getters--------------------------*/
 
-    public String getISBN() {
-        return this.ISBN;
-    }
 
     public String getTitle() {
         return title;
@@ -33,16 +41,20 @@ public class Book extends BaseEntity<Long> {
         return author;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
     public float getPrice() {
         return price;
     }
 
+//    public long getNrOfBooks() {
+//        return nrOfBooks;
+//    }
+
 
     /*---------------------Setters----------------------------*/
-
-    public void setISBN(String new_ISBN) {
-        this.ISBN = new_ISBN;
-    }
 
     public void setTitle(String new_title) {
         this.title = new_title;
@@ -50,6 +62,10 @@ public class Book extends BaseEntity<Long> {
 
     public void setAuthor (String new_author) {
         this.author = new_author;
+    }
+
+    public void setCategory (String new_category) {
+        this.category = new_category;
     }
 
     public void setPrice(float new_price) {
@@ -64,9 +80,9 @@ public class Book extends BaseEntity<Long> {
 
         Book book = (Book) o;
 
-        if(ISBN != book.ISBN) return false;
         if(title != book.title) return false;
         if(author != book.author) return false;
+        if(category != book.category) return false;
         if(price != book.price) return false;
         return title.equals(book.title);
 
@@ -75,9 +91,9 @@ public class Book extends BaseEntity<Long> {
     @Override
     public String toString() {
         return "Book{" +
-                "ISBN='" + ISBN + '\'' +
-                ", title='" + title + '\'' +
+                "title='" + title + '\'' +
                 ", author='" + author + '\'' +
+                ", category='" + category + '\'' +
                 ", price='" + price +
                 "} " + super.toString();
     }
