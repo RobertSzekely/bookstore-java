@@ -11,7 +11,7 @@ public class Client extends BaseEntity<Long> {
     private String lastName;
     private String email;
     private String telephone;
-    private static long nrOfClients = 0;
+    //private static long nrOfClients = 0;
 
     public Client() { }
 
@@ -21,7 +21,7 @@ public class Client extends BaseEntity<Long> {
         this.lastName = _lastName;
         this.email = _email;
         this.telephone = _telephone;
-        nrOfClients++;
+        //nrOfClients++;
     }
 
     /*----------------------Getters-------------------------*/
@@ -42,9 +42,9 @@ public class Client extends BaseEntity<Long> {
         return telephone;
     }
 
-    public long getNrOfClients() {
-        return nrOfClients;
-    }
+   // public long getNrOfClients() {
+//        return nrOfClients;
+ //   }
 
 
     /*-----------------------Setters---------------------------*/
